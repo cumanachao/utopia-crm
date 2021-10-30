@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  db:
+    image: postgis/postgis:10-2.5-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_MULTIPLE_DATABASES: utopia_development
+    volumes:
+      - ./pg-init-scripts:/docker-entrypoint-initdb.d
+
+  utopia-crm:
+    build:
+      context: ./
+      dockerfile: Dockerfile.local
+    command: "python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - $PWD:/utopia-crm
+    ports:
+      - 8000:8000
+    depends_on:
+      - db

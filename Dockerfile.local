@@ -1,0 +1,46 @@
+###########################
+# Base Information        #
+###########################
+
+FROM python:2.7
+
+###########################
+# Install software        #
+###########################
+
+# Install base packages and other software
+RUN apt-get update && apt-get install -y software-properties-common
+RUN add-apt-repository ppa:ubuntugis/ppa
+RUN apt-get install -y gdal-bin python-gdal
+
+
+# RUN add-apt-repository ppa:ubuntugis/ppa && apt-get update && apt-get install -y gdal-bin python-gdal python3-gdal
+
+
+###########################
+# Set working directory   #
+###########################
+
+# Set working directory this directoy is going to
+# be used by default
+WORKDIR /utopia-crm
+
+###########################
+# Configure dependencies  #
+###########################
+
+# Set the place where bundle is going to install gems
+# ENV BUNDLE_PATH /bundle
+
+# Configure bundle to to build nokogiri using system libraries
+# RUN bundle config --global build.nokogiri --use-system-libraries
+
+###########################
+# Run the app             #
+###########################
+
+EXPOSE 8000
+
+ENTRYPOINT ["/utopia-crm/local-entrypoint.sh"]
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

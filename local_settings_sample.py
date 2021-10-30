@@ -4,9 +4,10 @@ DEBUG = True
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "utopiadev",
-        "USER": "utopiadev_django",
-        "PASSWORD": "utopiadev_django",
+        "NAME": "utopia_development",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "db"
     }
 }
 

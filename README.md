@@ -102,6 +102,13 @@ There is a requirements.txt file with all the libraries you need to have install
   ```sh
   http://127.0.0.1:8000/
   ```
+#### Docker
+
+1. Duplicate `local_settings_sample.py` and rename it to `local_settings.py`
+2. `docker compose up`. This will build the images and start the server.
+3. Inside another terminal but in the same path execute `docker compose exec utopia-crm bash`. This will open the terminal inside the container.
+4. Execute `python manage.py migrate` to run migrations.
+5. Execute `python manage.py createsuperuser` to create the superuser to login.
 
 <!-- USAGE EXAMPLES -->
 ## Usage

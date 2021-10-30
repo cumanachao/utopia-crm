@@ -192,3 +192,5 @@ $ psql
 => \c <db name>  - connect to django db
 => create extension postgis;
 ``
+
+Password1
